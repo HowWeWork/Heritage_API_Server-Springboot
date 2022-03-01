@@ -13,7 +13,5 @@ public interface BoardRepository {
 
     List<BoardEntity> findAll();
 
-    BoardEntity update(BoardEntity board);
-
     void deleteById(Long boardNum);
 }
