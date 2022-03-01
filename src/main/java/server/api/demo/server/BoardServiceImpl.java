@@ -1,5 +1,6 @@
 package server.api.demo.server;
 
+import org.springframework.stereotype.Service;
 import server.api.demo.domain.BoardEntity;
 import server.api.demo.domain.BoardRequest;
 import server.api.demo.repository.BoardRepository;
@@ -7,6 +8,7 @@ import server.api.demo.repository.BoardRepository;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class BoardServiceImpl implements BoardService {
 
     private final BoardRepository repository;
@@ -68,7 +70,7 @@ public class BoardServiceImpl implements BoardService {
         if (request.getComment() != null)
             board.setComment(request.getComment());
 
-        return repository.update(board);
+        return repository.save(board);
     }
 
     /**

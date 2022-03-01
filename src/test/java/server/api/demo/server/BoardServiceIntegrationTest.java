@@ -3,9 +3,13 @@ package server.api.demo.server;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 import server.api.demo.AppConfig;
 import server.api.demo.domain.BoardEntity;
 import server.api.demo.domain.BoardRequest;
+import server.api.demo.repository.BoardRepository;
 import server.api.demo.repository.MemoryBoardRepository;
 
 import java.util.List;
@@ -14,21 +18,12 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-class BoardServiceImplTest {
+@SpringBootTest
+@Transactional
+class BoardServiceIntegrationTest {
 
-    BoardService boardService;
-    MemoryBoardRepository repository = new MemoryBoardRepository();
-
-    @BeforeEach
-    public void beforeEach() {
-        AppConfig appConfig = new AppConfig(repository);
-        boardService = appConfig.boardService();
-    }
-
-    @AfterEach
-    public void afterEach() {
-        repository.clearStore();
-    }
+    @Autowired BoardService boardService;
+    @Autowired BoardRepository boardRepository;
 
     @Test
     void newWrite() {

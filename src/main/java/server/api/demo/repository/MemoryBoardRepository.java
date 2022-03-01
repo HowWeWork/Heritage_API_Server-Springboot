@@ -27,7 +27,7 @@ public class MemoryBoardRepository implements BoardRepository {
         return new ArrayList<>(store.values());
     }
 
-    @Override
+
     public BoardEntity update(BoardEntity board) {
         board.setBoardNum(sequence);
         store.put(board.getBoardNum(), board);
