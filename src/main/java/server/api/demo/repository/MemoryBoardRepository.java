@@ -27,6 +27,11 @@ public class MemoryBoardRepository implements BoardRepository {
         return new ArrayList<>(store.values());
     }
 
+    @Override
+    public List<BoardEntity> findAllByLikeCountDesc() {
+        return null;
+    }
+
 
     public BoardEntity update(BoardEntity board) {
         board.setBoardNum(sequence);

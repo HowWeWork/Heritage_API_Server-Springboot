@@ -16,6 +16,8 @@ public interface BoardService {
 
     List<BoardEntity> searchAll();
 
+    List<BoardEntity> searchBestBoard();
+
     BoardEntity updateOne(Long boardNum,BoardRequest request);
 
     BoardEntity updateOneLike(Long boardNum, LikeRequest likeRequest);

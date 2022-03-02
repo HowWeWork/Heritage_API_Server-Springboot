@@ -7,6 +7,7 @@ import server.api.demo.domain.BoardRequest;
 import server.api.demo.domain.LikeRequest;
 import server.api.demo.repository.BoardRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,6 +51,22 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public List<BoardEntity> searchAll() {
         return this.repository.findAll();
+    }
+
+    /**
+     * Top 3 게시글 조회 기능
+     * @return 좋아요 수 베스트 1~3위 리스트
+     */
+    @Override
+    public List<BoardEntity> searchBestBoard() {
+        List<BoardEntity> sortedList = this.repository.findAllByLikeCountDesc();
+        List<BoardEntity> BestList = new ArrayList<>();
+
+        for(int i=0; i<3;i++) {
+            BestList.add(sortedList.get(i));
+        }
+
+        return BestList;
     }
 
     /**
