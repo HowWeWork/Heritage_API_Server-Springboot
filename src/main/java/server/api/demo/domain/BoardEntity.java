@@ -28,4 +28,5 @@ public class BoardEntity {
     private String comment;
 
     private Integer likeCount = 0;
+
 }
