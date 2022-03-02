@@ -11,6 +11,7 @@ import server.api.demo.domain.BoardResponse;
 import server.api.demo.domain.LikeRequest;
 import server.api.demo.server.BoardService;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -65,6 +66,15 @@ public class BoardApiController {
 
         List<BoardResponse> response = list.stream().map(BoardResponse::new).collect(Collectors.toList());
 
+        return ResponseEntity.ok(response);
+    }
+
+    // Top 3 게시글 조회 기능
+    @GetMapping("/best")
+    public ResponseEntity<List<BoardResponse>> readBestBoard() {
+
+        List<BoardEntity> list = this.boardService.searchBestBoard();
+        List<BoardResponse> response = list.stream().map(BoardResponse::new).collect(Collectors.toList());
         return ResponseEntity.ok(response);
     }
 
