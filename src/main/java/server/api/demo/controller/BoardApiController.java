@@ -3,6 +3,7 @@ package server.api.demo.controller;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import server.api.demo.domain.BoardEntity;
@@ -46,6 +47,29 @@ public class BoardApiController {
         return ResponseEntity.ok(new BoardResponse(newBoard));
     }
 
+    // 암호를 통한 글 조회 및 수정, 삭제 접근
+    @GetMapping("/{boardNum}/check")
+    public ResponseEntity<BoardResponse> checkPassword(@PathVariable Long boardNum, @RequestBody BoardRequest request) {
+
+        log.info("checkPw " + boardNum);
+        BoardEntity board = boardService.searchOne(boardNum).get();
+        ResponseEntity<BoardResponse> result;
+
+        if ( board.getPw().equals(request.getPw()) ) {
+
+            result = ResponseEntity.ok(new BoardResponse(board));
+
+        } else {
+
+            log.info("잘못된 비밀번호입니다.");
+
+            result = ResponseEntity.badRequest().build();
+
+        }
+
+        return result;
+    }
+
     // 단일 글 조회 요청
     @GetMapping("/{boardNum}")
     public ResponseEntity<BoardResponse> readOne(@PathVariable Long boardNum) {
@@ -84,21 +108,9 @@ public class BoardApiController {
 
         log.info("Update");
 
-        BoardEntity selectOne = this.boardService.searchOne(boardNum).get();
-        ResponseEntity<BoardResponse> ok;
+        BoardEntity result = this.boardService.updateOne(boardNum, request);
 
-        if ( selectOne.getPw().equals(request.getPw()) ) {
-
-            BoardEntity result = this.boardService.updateOne(boardNum, request);
-
-            ok = ResponseEntity.ok(new BoardResponse(result));
-
-        } else {
-            log.info("접근 권한 없음");
-
-            ok = ResponseEntity.badRequest().build();
-        }
-        return ok;
+        return ResponseEntity.ok(new BoardResponse(result));
     }
 
     // 선택 글 좋아요 상태 및 수 체크
