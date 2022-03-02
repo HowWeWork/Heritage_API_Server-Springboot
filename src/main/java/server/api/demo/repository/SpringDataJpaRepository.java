@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import server.api.demo.domain.BoardEntity;
 
+@Repository
 public interface SpringDataJpaRepository extends JpaRepository<BoardEntity,Long>,BoardRepository {
 
 }

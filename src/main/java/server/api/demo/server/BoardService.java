@@ -1,5 +1,6 @@
 package server.api.demo.server;
 
+import org.springframework.stereotype.Service;
 import server.api.demo.domain.BoardEntity;
 import server.api.demo.domain.BoardRequest;
 
