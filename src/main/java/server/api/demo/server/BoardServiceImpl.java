@@ -1,5 +1,6 @@
 package server.api.demo.server;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import server.api.demo.domain.BoardEntity;
 import server.api.demo.domain.BoardRequest;
@@ -9,13 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
 
     private final BoardRepository repository;
-
-    public BoardServiceImpl(BoardRepository repository) {
-        this.repository = repository;
-    }
 
     /**
      * 글쓰기

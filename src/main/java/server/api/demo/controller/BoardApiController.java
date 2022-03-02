@@ -1,6 +1,7 @@
 package server.api.demo.controller;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ import static com.jayway.jsonpath.internal.Utils.isEmpty;
 
 @Slf4j
 @CrossOrigin
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/board")
 public class BoardApiController {

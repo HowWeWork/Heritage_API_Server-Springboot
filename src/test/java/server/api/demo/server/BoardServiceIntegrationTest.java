@@ -1,16 +1,12 @@
 package server.api.demo.server;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-import server.api.demo.AppConfig;
 import server.api.demo.domain.BoardEntity;
 import server.api.demo.domain.BoardRequest;
 import server.api.demo.repository.BoardRepository;
-import server.api.demo.repository.MemoryBoardRepository;
 
 import java.util.List;
 import java.util.Optional;
