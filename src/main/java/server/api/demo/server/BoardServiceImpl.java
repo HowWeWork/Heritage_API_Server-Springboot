@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import server.api.demo.domain.BoardEntity;
 import server.api.demo.domain.BoardRequest;
+import server.api.demo.domain.LikeRequest;
 import server.api.demo.repository.BoardRepository;
 
 import java.util.List;
@@ -67,6 +68,23 @@ public class BoardServiceImpl implements BoardService {
             board.setTitle(request.getTitle());
         if (request.getComment() != null)
             board.setComment(request.getComment());
+
+        return repository.save(board);
+    }
+
+    /**
+     * 선택 글의 '좋아요' 버튼 클릭 후 좋아요 수 증가
+     */
+    @Override
+    public BoardEntity updateOneLike(Long boardNum, LikeRequest likeRequest) {
+
+        BoardEntity board = this.searchOne(boardNum).get();
+
+        if(likeRequest.getLike() == true)
+            board.setLikeCount(board.getLikeCount() + 1);
+        else {
+            board.setLikeCount(board.getLikeCount() - 1);
+        }
 
         return repository.save(board);
     }

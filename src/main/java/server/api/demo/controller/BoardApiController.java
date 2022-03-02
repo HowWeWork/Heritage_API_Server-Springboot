@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import server.api.demo.domain.BoardEntity;
 import server.api.demo.domain.BoardRequest;
 import server.api.demo.domain.BoardResponse;
+import server.api.demo.domain.LikeRequest;
 import server.api.demo.server.BoardService;
 
 import java.util.List;
@@ -88,6 +89,17 @@ public class BoardApiController {
             ok = ResponseEntity.badRequest().build();
         }
         return ok;
+    }
+
+    // 선택 글 좋아요 상태 및 수 체크
+    @PatchMapping("/{boardNum}/like")
+    public ResponseEntity<BoardResponse> likeUpdate(@PathVariable Long boardNum, @RequestBody LikeRequest request) {
+
+        log.info("Like button click");
+
+        BoardEntity result = this.boardService.updateOneLike(boardNum, request);
+
+        return ResponseEntity.ok(new BoardResponse(result));
     }
 
     // 선택 글 삭제 요청
