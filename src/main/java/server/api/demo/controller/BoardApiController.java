@@ -1,9 +1,7 @@
 package server.api.demo.controller;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import server.api.demo.domain.BoardEntity;
@@ -12,7 +10,6 @@ import server.api.demo.domain.BoardResponse;
 import server.api.demo.domain.LikeRequest;
 import server.api.demo.server.BoardService;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
