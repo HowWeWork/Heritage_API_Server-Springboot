@@ -31,12 +31,15 @@ public class BoardApiController {
 
         log.info("Create");
 
+        log.info("request = " + request);
+
         if(isEmpty(request.getUserName())
                 || isEmpty(request.getPw())
                 || isEmpty(request.getSector())
                 || isEmpty(request.getTitle())
                 || isEmpty(request.getComment())) {
 
+            log.info("null 값이 있습니다.");
             return ResponseEntity.badRequest().build();
         }
 
@@ -124,8 +127,11 @@ public class BoardApiController {
     // 선택 글 삭제 요청
     @DeleteMapping("/{boardNum}")
     public ResponseEntity<?> deleteOne(@PathVariable Long boardNum) {
+
         log.info("Delete One " + boardNum );
+
         this.boardService.deleteOne(boardNum);
+
         return ResponseEntity.ok().build();
     }
 }
