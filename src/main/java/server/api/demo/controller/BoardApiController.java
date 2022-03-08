@@ -4,10 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import server.api.demo.domain.BoardEntity;
-import server.api.demo.domain.BoardRequest;
-import server.api.demo.domain.BoardResponse;
-import server.api.demo.domain.LikeRequest;
+import server.api.demo.domain.*;
 import server.api.demo.server.BoardService;
 
 import java.util.List;
@@ -81,16 +78,16 @@ public class BoardApiController {
     }
 
     // 전체 글 조회 요청
+    // IOS 버전
     @GetMapping
-    public ResponseEntity<List<BoardResponse>> readAll() {
+    public ResponseEntity<ListData> readAll() {
 
         List<BoardEntity> list = this.boardService.searchAll();
+        ListData listData = new ListData(list);
 
         log.info("Read All (" + list.size() + ")");
 
-        List<BoardResponse> response = list.stream().map(BoardResponse::new).collect(Collectors.toList());
-
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(listData);
     }
 
     // Top 3 게시글 조회 기능
