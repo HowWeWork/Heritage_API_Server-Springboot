@@ -1,14 +1,34 @@
+#spring:
+#  datasource:
+#    url: jdbc:h2:tcp://localhost/~/test
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: create
+
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/test
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    url: jdbc:mysql://localhost:3306/board?serverTimezone=UTC&characterEncoding=UTF-8
+    username: root
+    password: clzls456
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
+#    show-sql: true # 시스템 아웃 출력 방식
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        format_sql: true # sql 보기 좋게 변경
+
+logging:
+  level:
+    org.hibernate.SQL: debug #JPA, Hibernate가 생성하는 SQL이 로그로 남김
+#    org.hibernate.type: trace # ?의 값
 
 server:
   port: 5000
-
