@@ -62,8 +62,13 @@ public class BoardServiceImpl implements BoardService {
         List<BoardEntity> sortedList = this.repository.findAllByLikeCountDesc();
         List<BoardEntity> BestList = new ArrayList<>();
 
-        for(int i=0; i<3;i++) {
-            BestList.add(sortedList.get(i));
+        for(int i=0; i<sortedList.size();i++) {
+
+            if(i>2){
+                break;
+            } else {
+                BestList.add(sortedList.get(i));
+            }
         }
 
         return BestList;
