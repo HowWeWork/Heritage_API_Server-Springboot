@@ -28,6 +28,11 @@ public class MemoryBoardRepository implements BoardRepository {
     }
 
     @Override
+    public List<BoardEntity> findAllByBoardNumDesc() {
+        return null;
+    }
+
+    @Override
     public List<BoardEntity> findAllByLikeCountDesc() {
         return null;
     }

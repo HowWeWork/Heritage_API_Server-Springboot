@@ -13,6 +13,8 @@ public interface BoardRepository {
 
     List<BoardEntity> findAll();
 
+    List<BoardEntity> findAllByBoardNumDesc();
+
     List<BoardEntity> findAllByLikeCountDesc();
 
     void deleteById(Long boardNum);

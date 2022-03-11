@@ -50,7 +50,7 @@ public class BoardServiceImpl implements BoardService {
      */
     @Override
     public List<BoardEntity> searchAll() {
-        return this.repository.findAll();
+        return this.repository.findAllByBoardNumDesc();
     }
 
     /**

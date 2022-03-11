@@ -10,6 +10,7 @@ import server.api.demo.domain.BoardResponse;
 import server.api.demo.domain.LikeRequest;
 import server.api.demo.server.BoardService;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
