@@ -12,7 +12,7 @@ import java.util.List;
 public interface SpringDataJpaRepository extends JpaRepository<BoardEntity,Long>,BoardRepository {
 
     @Override
-    @Query(value = "select * from BOARD order by BOARD.LIKE_COUNT desc",nativeQuery = true)
+    @Query(value = "select * from board order by like_count desc",nativeQuery = true)
     List<BoardEntity> findAllByLikeCountDesc();
 
 }
