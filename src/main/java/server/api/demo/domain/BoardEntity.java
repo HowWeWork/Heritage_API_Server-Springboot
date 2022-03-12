@@ -30,6 +30,7 @@ public class BoardEntity {
 
     private Integer likeCount = 0;
 
+    // 글 작성 시간
     private LocalDateTime writeDate;
 
     @PrePersist
