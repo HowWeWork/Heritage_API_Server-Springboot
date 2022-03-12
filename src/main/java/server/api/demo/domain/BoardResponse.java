@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import java.time.LocalDateTime;
+import java.util.spi.LocaleNameProvider;
+
 @Slf4j
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,6 +25,7 @@ public class BoardResponse {
     private String title;
     private String comment;
     private Integer likeCount;
+    private LocalDateTime writeDate;
 
     public BoardResponse(BoardEntity board) {
 
@@ -34,5 +38,6 @@ public class BoardResponse {
         this.title = board.getTitle();
         this.comment = board.getComment();
         this.likeCount = board.getLikeCount();
+        this.writeDate = board.getWriteDate();
     }
 }

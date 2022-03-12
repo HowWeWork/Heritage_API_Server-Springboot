@@ -13,7 +13,7 @@ public interface BoardRepository {
 
     List<BoardEntity> findAll();
 
-    List<BoardEntity> findAllByBoardNumDesc();
+    List<BoardEntity> findAllByWriteDateDesc();
 
     List<BoardEntity> findAllByLikeCountDesc();
 
