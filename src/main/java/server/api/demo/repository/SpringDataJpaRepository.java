@@ -16,6 +16,6 @@ public interface SpringDataJpaRepository extends JpaRepository<BoardEntity,Long>
     List<BoardEntity> findAllByLikeCountDesc();
 
     @Override
-    @Query(value = "select * from board order by board_num desc",nativeQuery = true)
-    List<BoardEntity> findAllByBoardNumDesc();
+    @Query(value = "select * from board order by write_date desc",nativeQuery = true)
+    List<BoardEntity> findAllByWriteDateDesc();
 }

@@ -28,7 +28,7 @@ public class MemoryBoardRepository implements BoardRepository {
     }
 
     @Override
-    public List<BoardEntity> findAllByBoardNumDesc() {
+    public List<BoardEntity> findAllByWriteDateDesc() {
         return null;
     }
 

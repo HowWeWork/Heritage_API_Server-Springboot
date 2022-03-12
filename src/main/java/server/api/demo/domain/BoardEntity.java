@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,5 +29,12 @@ public class BoardEntity {
     private String comment;
 
     private Integer likeCount = 0;
+
+    private LocalDateTime writeDate;
+
+    @PrePersist
+    public void writeDate() {
+        this.writeDate = LocalDateTime.now();
+    }
 
 }
