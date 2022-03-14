@@ -2,6 +2,7 @@ package server.api.demo.server;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import server.api.demo.domain.BoardEntity;
 import server.api.demo.domain.BoardRequest;
 import server.api.demo.domain.LikeRequest;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+//@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
 
@@ -102,10 +104,12 @@ public class BoardServiceImpl implements BoardService {
 
         BoardEntity board = this.searchOne(boardNum).get();
 
-        if(likeRequest.getLike() == true)
+        if(likeRequest.isLike() == true)
             board.setLikeCount(board.getLikeCount() + 1);
-        else {
+        else if(likeRequest.isLike() == false ){
             board.setLikeCount(board.getLikeCount() - 1);
+        } else {
+            System.out.println("boardService-updateOneLike : 잘못된 값입니다.");
         }
 
         return repository.save(board);

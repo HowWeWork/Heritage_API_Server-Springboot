@@ -9,5 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class LikeRequest {
 
-    private Boolean like;
+    private boolean like;
+
 }

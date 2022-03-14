@@ -40,11 +40,14 @@ public class BoardApiController {
                 || isEmpty(request.getTitle())
                 || isEmpty(request.getComment())) {
 
-            log.info("null 값이 있습니다.");
+            log.info("Exist null");
             return ResponseEntity.badRequest().build();
         }
 
         BoardEntity newBoard = this.boardService.newWrite(request);
+
+        log.info("success");
+
         return ResponseEntity.ok(new BoardResponse(newBoard));
     }
 
@@ -52,7 +55,8 @@ public class BoardApiController {
     @GetMapping("/{boardNum}/check")
     public ResponseEntity<BoardResponse> checkPassword(@PathVariable Long boardNum, @RequestBody BoardRequest request) {
 
-        log.info("checkPw " + boardNum);
+        log.info("checkPw " + boardNum + "번");
+
         BoardEntity board = boardService.searchOne(boardNum).get();
         ResponseEntity<BoardResponse> result;
 
@@ -75,7 +79,7 @@ public class BoardApiController {
     @GetMapping("/{boardNum}")
     public ResponseEntity<BoardResponse> readOne(@PathVariable Long boardNum) {
 
-        log.info("Read One " + boardNum);
+        log.info("Read One : " + boardNum);
 
         Optional<BoardEntity> result = this.boardService.searchOne(boardNum);
         return ResponseEntity.ok(new BoardResponse(result.get()));
@@ -87,7 +91,7 @@ public class BoardApiController {
 
         List<BoardEntity> list = this.boardService.searchAll();
 
-        log.info("Read All (" + list.size() + ")");
+        log.info("Read All (total count : " + list.size() + ")");
 
         List<BoardResponse> response = list.stream().map(BoardResponse::new).collect(Collectors.toList());
 
@@ -98,6 +102,8 @@ public class BoardApiController {
     @GetMapping("/best")
     public ResponseEntity<List<BoardResponse>> readBestBoard() {
 
+        log.info("Read Best Board");
+
         List<BoardEntity> list = this.boardService.searchBestBoard();
         List<BoardResponse> response = list.stream().map(BoardResponse::new).collect(Collectors.toList());
         return ResponseEntity.ok(response);
@@ -107,9 +113,11 @@ public class BoardApiController {
     @PatchMapping("/{boardNum}")
     public ResponseEntity<BoardResponse> update(@PathVariable Long boardNum, @RequestBody BoardRequest request) {
 
-        log.info("Update");
+        log.info("Update : " + boardNum);
 
         BoardEntity result = this.boardService.updateOne(boardNum, request);
+
+        log.info("success");
 
         return ResponseEntity.ok(new BoardResponse(result));
     }
@@ -120,6 +128,8 @@ public class BoardApiController {
 
         log.info("Like button click");
 
+        log.info("request = " + request);
+
         BoardEntity result = this.boardService.updateOneLike(boardNum, request);
 
         return ResponseEntity.ok(new BoardResponse(result));
@@ -129,9 +139,11 @@ public class BoardApiController {
     @DeleteMapping("/{boardNum}")
     public ResponseEntity<?> deleteOne(@PathVariable Long boardNum) {
 
-        log.info("Delete One " + boardNum );
+        log.info("Delete One : " + boardNum );
 
         this.boardService.deleteOne(boardNum);
+
+        log.info("success");
 
         return ResponseEntity.ok().build();
     }
