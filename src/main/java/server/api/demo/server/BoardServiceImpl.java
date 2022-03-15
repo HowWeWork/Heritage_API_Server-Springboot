@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-//@Transactional(readOnly = true)
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
 
@@ -25,6 +25,7 @@ public class BoardServiceImpl implements BoardService {
      * @return
      */
     @Override
+    @Transactional
     public BoardEntity newWrite(BoardRequest request) {
 
         BoardEntity boardEntity = new BoardEntity();
@@ -83,6 +84,7 @@ public class BoardServiceImpl implements BoardService {
      * @return
      */
     @Override
+    @Transactional
     public BoardEntity updateOne(Long boardNum, BoardRequest request) {
         BoardEntity board = this.searchOne(boardNum).get();
 
@@ -100,6 +102,7 @@ public class BoardServiceImpl implements BoardService {
      * 선택 글의 '좋아요' 버튼 클릭 후 좋아요 수 증가
      */
     @Override
+    @Transactional
     public BoardEntity updateOneLike(Long boardNum, LikeRequest likeRequest) {
 
         BoardEntity board = this.searchOne(boardNum).get();
@@ -120,6 +123,7 @@ public class BoardServiceImpl implements BoardService {
      * @param boardNum : 해당 게시글 번호
      */
     @Override
+    @Transactional
     public void deleteOne(Long boardNum) {
         repository.deleteById(boardNum);
     }
