@@ -1,6 +1,9 @@
 `Heritage_Backend`
 
-# This is Backend API server Repository
+# `Deploy` v1.0.1-beta 
+
+- aws Elastic Beanstalk을 통해서 배포
+- 배포 날짜 : 2022.03.16
 
 ## 구현 기능 (v1.0.1-beta)
 
